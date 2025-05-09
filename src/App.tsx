@@ -1,26 +1,30 @@
-import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
-import './App.css'
+import { createBrowserRouter } from 'react-router-dom';
+import { Private } from './routes/private';
 
-function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [selectedRepos, setSelectedRepos] = useState<any[]>([]);
+import { Home } from './pages/Home'
+import { Login } from './pages/Login'
+import { Admin } from './pages/Admin'
 
-  useEffect(() => {
-    const stored = localStorage.getItem("selectedRepos");
-    if (stored) setSelectedRepos(JSON.parse(stored));
-  }, []);
+import { Layout } from './components/layout'
 
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Landing selectedRepos={selectedRepos} />} />
-        <Route path="/login" element={<Login onLogin={() => setIsAuthenticated(true)} />} />
-        <Route path="/admin" element={<Admin isAuthenticated={isAuthenticated} />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </Router>
-  );
-}
+const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: <Home />
+      },
+      {
+        path: '/admin',
+        element: <Private><Admin /></Private>
+      }
+    ]
+  },
+  {
+    path: '/login',
+    element: <Login />
+  },
+])
 
-export default App
+export { router };
