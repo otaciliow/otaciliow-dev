@@ -1,5 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { Octokit } from '@octokit/rest';
+import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { doc, collection, getDocs, setDoc, deleteDoc, onSnapshot } from 'firebase/firestore';
+import { db } from '../../services/firebaseConnection';
 
 import { Container } from '../../components/container'
 
@@ -17,9 +20,29 @@ interface ReposProps {
     topics: string[];
 }
 
+const itens_per_page = 9;
+
 export function Admin() {
-    const [profile, setProfile] = useState<UserDataProps | null>(null)
-    const [repos, setRepos] = useState<ReposProps[]>()
+    const [profile, setProfile] = useState<UserDataProps | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [repos, setRepos] = useState<ReposProps[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [activeRepos, setActiveRepos] = useState<ReposProps[]>([])
+
+    const totalPages = Math.ceil(repos.length / itens_per_page)
+    
+    const handleNext = () => {
+        setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+    };
+    
+    const handlePrevious = () => {
+        setCurrentPage((prev) => Math.max(prev - 1, 1));
+    }
+
+    const paginatedRepos = useMemo(() => {
+        const start = (currentPage - 1) * itens_per_page;
+        return repos?.slice(start, start + itens_per_page);
+    }, [currentPage, repos]);
 
     useEffect(() => {
         const fetchRepos = async () => {
@@ -45,7 +68,7 @@ export function Admin() {
     
             try {
                 const data = await octokit.paginate(octokit.rest.repos.listForAuthenticatedUser, {
-                    per_page: 30,
+                    per_page: 100,
                 });
 
                 const fetchedRepos: ReposProps[] = data.map((repo) => ({
@@ -56,14 +79,6 @@ export function Admin() {
                 }));
 
                 setRepos(fetchedRepos)
-
-                // data.forEach((repo) => {
-                //     if (repo.name == 'react-ecommerce') {
-                //         console.log(repo)
-                //     }
-                // })
-
-                // setRepos(repos)
                 
             } catch (error: any) {
                 console.log(`Erro" Status: ${error.status}`)
@@ -71,6 +86,44 @@ export function Admin() {
         }
 
         fetchRepos()
+    }, [])
+
+    const handleRepoClick = (repoName: string | null) => {
+        const name = repoName;
+        const linksRef = collection(db, 'active-display')
+
+        const unsub = onSnapshot(linksRef, (snapshot) => {
+            let lista = [] as ReposProps[];
+
+            snapshot.forEach((doc) => {
+                lista.push({
+                    name: doc.data().name,
+                    description: doc.data().description,
+                    url: doc.data().url,
+                    topics: doc.data().topics
+                })
+
+            })
+            
+            setActiveRepos(lista)
+        })
+
+        if (name) {
+            const repoData = activeRepos.find(item => item.name === name);
+    
+            if (repoData) {
+                setIsLoading(true);
+                
+            }
+        }
+
+        return () => {
+            unsub();
+        }
+    }
+
+    useEffect(() => {
+        console.log(activeRepos)
     }, [])
 
     if (!profile) {
@@ -91,22 +144,27 @@ export function Admin() {
                 <a href={profile.profileUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
 
-            <ul className="flex flex-col gap-5 items-center">
-                {repos?.map((repo, index) => (
-                    <li key={index} className="border-2 rounded px-2 list-none">
-                        <a href={repo.url} target="_blank" rel="noopener noreferrer">{repo.name}</a>
-                        <p>{repo.description || "Sem descrição."}</p>
-
-                        {repo.topics.length > 0 && (
-                            <ul className="flex flex-wrap gap-2">
-                                {repo.topics.map((topic, i) => (
-                                    <li key={i} className="">{topic}</li>
-                                ))}
-                            </ul>
-                        )}
-                    </li>
-                ))}
+            <ul className={`flex items-center justify-center mt-5${isLoading ? ' blur-sm' : ''}`}>
+                <div className="flex flex-wrap gap-2 md:gap-5 max-w-xl">
+                    {paginatedRepos?.map((repo, index) => (
+                        <li key={index} className="border-2 rounded p-2 list-none hover:scale-105 transition-all" data-name={repo.name} onClick={handleRepoClick(repo.name)}>
+                            <span>
+                                {repo.name}
+                            </span>
+                            {/* <span>{repo.description}</span>
+                            <span>{repo.url}</span>
+                            <span>{repo.topics}</span> */}
+                        </li>
+                    ))}
+                </div>
             </ul>
+
+            <div className="flex justify-center gap-10 w-full mt-5">
+                <button className="cursor-pointer rounded-full hover:not-disabled:bg-purple-600 transition-all disabled:opacity-9 " onClick={handlePrevious} disabled={currentPage === 1}><ChevronLeft size={20} color="#ffffff" /></button>
+                <span>{currentPage} de {totalPages}</span>
+                <button className="cursor-pointer rounded-full hover:not-disabled:bg-purple-600 transition-all disabled:opacity-9" onClick={handleNext} disabled={currentPage === totalPages}><ChevronRight size={20} color="#ffffff" /></button>
+            </div>
+            
         </Container>
     )
 }
