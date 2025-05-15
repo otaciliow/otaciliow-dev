@@ -7,6 +7,7 @@ import { doc, collection, setDoc, deleteDoc, onSnapshot } from 'firebase/firesto
 import { db } from '../../services/firebaseConnection';
 
 import { Container } from '../../components/container'
+import { Link } from 'react-router-dom';
 
 interface UserDataProps {
     login: string;
@@ -188,7 +189,9 @@ export function Admin() {
         <Container>
             <div className="flex flex-col gap-5 items-center">
                 <h1 className="text-center font-bold text-2xl">Opa {profile.name?.split(' ')[0]}, bão?</h1>
-                <img src={profile.avatar} alt={`Imagem de perfil de ${profile.name}`} className="max-w-50 rounded-full border-purple-600 border-2" />
+                <Link to='/'>
+                    <img src={profile.avatar} alt={`Imagem de perfil de ${profile.name}`} className="max-w-50 rounded-full border-purple-600 border-2" />
+                </Link>
             </div>
             <p className="text-center my-5">Selecione os repositórios que serão exibidos na LP:</p>
             <ul className={`flex items-center justify-center mt-5${isLoading ? ' blur-sm' : ''}`}>
