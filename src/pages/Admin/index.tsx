@@ -192,9 +192,9 @@ export function Admin() {
             </div>
             <p className="text-center my-5">Selecione os repositórios que serão exibidos na LP:</p>
             <ul className={`flex items-center justify-center mt-5${isLoading ? ' blur-sm' : ''}`}>
-                <div className="flex flex-col md:flex-wrap gap-2 md:justify-between md:gap-5 max-w-xs md:max-w-4xl">
+                <div className="flex flex-wrap gap-4 justify-center md:max-w-4xl">
                     {paginatedRepos?.map((repo, index) => (
-                        <li key={index} className={`border-2 rounded p-2 md:min-w-3xs list-none cursor-pointer hover:scale-105 transition-all${activeRepos.find(item => item.name === repo.name) ? ' border-purple-600' : ''}`} data-name={repo.name} onClick={() => handleRepoClick(repo.name)}>
+                        <li key={index} className={`border-2 rounded p-2 text-center min-w-3xs list-none cursor-pointer hover:scale-105 transition-all${activeRepos.find(item => item.name === repo.name) ? ' border-purple-600' : ''}`} data-name={repo.name} onClick={() => handleRepoClick(repo.name)}>
                             <span>
                                 {repo.name}
                             </span>
@@ -203,7 +203,7 @@ export function Admin() {
                 </div>
             </ul>
 
-            <div className="flex justify-center gap-10 w-full mt-5">
+            <div className="flex justify-center gap-10 w-full my-5">
                 <button className="cursor-pointer rounded-full hover:not-disabled:bg-purple-600 transition-all disabled:opacity-9 " onClick={handlePrevious} disabled={currentPage === 1}><ChevronLeft size={20} color="#ffffff" /></button>
                 <span>{currentPage} de {totalPages}</span>
                 <button className="cursor-pointer rounded-full hover:not-disabled:bg-purple-600 transition-all disabled:opacity-9" onClick={handleNext} disabled={currentPage === totalPages}><ChevronRight size={20} color="#ffffff" /></button>
