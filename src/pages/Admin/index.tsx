@@ -10,18 +10,13 @@ import { Container } from '../../components/container'
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/themeContext';
 
+import { ReposProps } from '../../interfaces/IReposProps';
+
 interface UserDataProps {
     login: string;
     name: string | null;
     avatar: string;
     profileUrl: string;
-}
-
-interface ReposProps {
-    name: string | null;
-    description: string | null;
-    url: string;
-    topics: string[];
 }
 
 const itens_per_page = 9;
