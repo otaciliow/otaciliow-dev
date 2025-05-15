@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useTheme } from '../../contexts/themeContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -20,7 +19,6 @@ type formData = z.infer<typeof schema>
 
 export function Login() {
     const navigate = useNavigate()
-    const { theme } = useTheme();
 
     const { register, handleSubmit, formState: {errors} } = useForm<formData>({
         resolver: zodResolver(schema),
