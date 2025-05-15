@@ -193,7 +193,7 @@ export function Admin() {
                     <img src={profile.avatar} alt={`Imagem de perfil de ${profile.name}`} className="max-w-50 rounded-full border-purple-600 border-2" />
                 </Link>
             </div>
-            <p className="text-center my-5">Selecione os repositórios que serão exibidos na LP:</p>
+            <p className="text-center my-5">Selecione os repositórios que serão exibidos na LP ({activeRepos.length}):</p>
             <ul className={`flex items-center justify-center mt-5${isLoading ? ' blur-sm' : ''}`}>
                 <div className="flex flex-wrap gap-4 justify-center md:max-w-4xl">
                     {paginatedRepos?.map((repo, index) => (
