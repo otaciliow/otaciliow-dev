@@ -8,6 +8,7 @@ import { db } from '../../services/firebaseConnection';
 
 import { Container } from '../../components/container'
 import { Link } from 'react-router-dom';
+import { useTheme } from '../../contexts/themeContext';
 
 interface UserDataProps {
     login: string;
@@ -31,7 +32,7 @@ export function Admin() {
     const [repos, setRepos] = useState<ReposProps[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [activeRepos, setActiveRepos] = useState<ReposProps[]>([])
-    const [theme, setTheme] = useState(['#ffffff', '#000000'])
+    const { theme } = useTheme();
 
     const totalPages = Math.ceil(repos.length / itens_per_page)
     
@@ -57,12 +58,6 @@ export function Admin() {
         duration: 2000,
         position: 'top-center'
     })
-
-    const handleCheckTheme = () => {
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark').matches) {
-            setTheme(['#333333', '#ffffff'])
-        }
-    }
 
     useEffect(() => {
         const fetchRepos = async () => {
@@ -105,7 +100,6 @@ export function Admin() {
             }
         }
         fetchRepos()
-        handleCheckTheme()
     }, [])
 
     useEffect(() => {
@@ -211,8 +205,11 @@ export function Admin() {
                 <span>{currentPage} de {totalPages}</span>
                 <button className="cursor-pointer rounded-full hover:not-disabled:bg-purple-600 transition-all disabled:opacity-9" onClick={handleNext} disabled={currentPage === totalPages}><ChevronRight size={20} color="#ffffff" /></button>
             </div>
-
-            <Toaster toastOptions={{style: {background: theme[0], color: theme[1]}}}/>
+            { theme === 'light' ? (
+                <Toaster toastOptions={{style: {background: '#ffffff', color: '#333333'}}}/>
+            ) : (
+                <Toaster toastOptions={{style: {background: '#333333', color: '#ffffff'}}}/>
+            ) }
             
         </Container>
     )
