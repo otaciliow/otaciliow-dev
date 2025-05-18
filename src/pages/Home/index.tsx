@@ -36,8 +36,8 @@ export function Home() {
     return(
         <Container>
             <h1>Home page</h1>
-            {repos.map((repo) => (
-                <h2>{repo.name}</h2>
+            {repos.map((repo, i) => (
+                <h2 key={i}>{repo.name}</h2>
             ))}
         </Container>
     )
