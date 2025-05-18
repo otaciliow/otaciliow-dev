@@ -1,6 +1,23 @@
 @import "tailwindcss";
 
+@theme {
+    --color-primary-100:    #ade8f4
+    --color-primary-400:    #00b4d8;
+    --color-primary-500:    #0096c7;
+    --color-primary-600:    #0077b6;
+}
+
 body.dark {
     background-color: #333333;
     color: #ffffff;
+}
+
+.gradient-text {
+    background-image: linear-gradient(to right, #0077b6, #00b4d8);
+    background-clip: text;
+    color: transparent;
+}
+
+body.dark .gradient-text {
+    background-image: linear-gradient(to right, #0096c7, #ade8f4)
 }
