@@ -7,6 +7,11 @@ export function Header() {
     const user = useContext(UserContext)
     const {theme, toggleTheme} = useTheme();
 
+    function smoothScrollToSection(section: string) {
+        let targetSection = document.getElementById(section);
+        targetSection?.scrollIntoView({behavior: 'smooth'});
+    }
+
     return (
         <header className="mx-auto p-5 flex justify-center shadow-2xl">
             <div className="w-7xl flex items-center justify-between">
@@ -16,9 +21,9 @@ export function Header() {
                     <h2 className="blur-sm gradient-text md:w-32 text-2xl font-bold">{`<Name/>`}</h2>
                 )}
                 <div className="flex items-center gap-5">
-                    <a href="#about" className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} transition-colors`}>Sobre mim</a>
-                    <a href="#projects" className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} transition-colors`}>Projetos</a>
-                    <a href="#placeholder" className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} transition-colors`}>Placeholder</a>
+                    <button onClick={() => smoothScrollToSection('about')} className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} cursor-pointer transition-colors`}>Sobre mim</button>
+                    <button onClick={() => smoothScrollToSection('projects')} className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} cursor-pointer transition-colors`}>Projetos</button>
+                    <button onClick={() => smoothScrollToSection('placeholder')} className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} cursor-pointer transition-colors`}>Placeholder</button>
                 </div>
                 <div className={`relative flex w-11 h-6 rounded-full cursor-pointer shadow-inner items-center border border-primary-500 justify-around`}>
                     <Sun size={15} className="text-primary-100" onClick={toggleTheme}/>
