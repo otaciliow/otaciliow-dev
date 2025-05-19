@@ -103,13 +103,13 @@ export function Home() {
                 </Swiper>
                 {selectedRepo && (
                     <div onClick={(e) => {if (e.target === e.currentTarget) {closeModal()}}} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                        <div role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()} className="bg-primary-400 drop-shadow-2xl flex flex-col items-center justify-center gap-5 rounded-lg p-6 max-w-md w-full shadow-lg relative">
+                        <div role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()} className="bg-primary-400 text-white drop-shadow-2xl flex flex-col items-center justify-center gap-5 rounded-lg p-6 max-w-md w-full shadow-lg relative">
                             <button aria-label="fechar modal" onClick={() => closeModal()} className="cursor-pointer absolute top-2 right-4 text-gray-600 hover:text-black text-2xl">
                                 &times;
                             </button>
                             <h3 className="text-xl font-bold text-shadow-md text-center">{selectedRepo.name?.replace('-', ' ')}</h3>
                             <p className="text-shadow-md">{selectedRepo.description || 'Sem descrição disponível.'}</p>
-                            <p className="text-shadow-md">Principais tecnologias utilizadas:</p>
+                            <p className="text-shadow-md ">Principais tecnologias utilizadas:</p>
                             <div className="flex items-center flex-wrap gap-2 justify-evenly">
                                 {selectedRepo.topics.map((topic, i) => (
                                     <span key={i} className="bg-primary-600 rounded-full py-1 px-3 hover:animate-bounce">{topic}</span>
@@ -120,6 +120,9 @@ export function Home() {
                     </div>
                 )}
             </section>
+            <footer className="text-center text-sm text-shadow-md py-10">
+                {`© ${new Date().getFullYear()} - ${user?.name}. Todos os direitos reservados.`}
+            </footer>
         </Container>
     )
 }
