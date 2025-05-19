@@ -10,8 +10,10 @@ export function Header() {
     return (
         <header className="mx-auto p-5 flex justify-center shadow-2xl">
             <div className="w-7xl flex items-center justify-between">
-                { user && (
-                    <h2 className="gradient-text text-2xl font-bold hover:animate-pulse cursor-pointer transition-all">{`<${user?.name?.split(' ')[0]}/>`}</h2>
+                { user ? (
+                    <h2 className="gradient-text text-2xl font-bold md:w-32 hover:animate-pulse cursor-pointer transition-all">{`<${user?.name?.split(' ')[0]}/>`}</h2>
+                ) : (
+                    <h2 className="blur-sm gradient-text md:w-32 text-2xl font-bold">{`<Name/>`}</h2>
                 )}
                 <div className="flex items-center gap-5">
                     <a href="#about" className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} transition-colors`}>Sobre mim</a>
