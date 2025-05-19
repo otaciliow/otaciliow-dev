@@ -1,15 +1,18 @@
-import { useState, useEffect } from 'react'
+import { useContext } from 'react'
+import { UserContext } from '../../contexts/userContext';
 import { Sun, Moon } from 'lucide-react';
 import { useTheme } from '../../contexts/themeContext';
 
 export function Header() {
-    const [username, setUsername] = useState('<Otaciliow />')
+    const user = useContext(UserContext)
     const {theme, toggleTheme} = useTheme();
 
     return (
         <header className="mx-auto p-5 flex justify-center shadow-2xl">
             <div className="w-7xl flex items-center justify-between">
-                <h2 className="gradient-text text-2xl font-bold hover:animate-pulse transition-all">{username}</h2>
+                { user && (
+                    <h2 className="gradient-text text-2xl font-bold hover:animate-pulse cursor-pointer transition-all">{`<${user?.name?.split(' ')[0]}/>`}</h2>
+                )}
                 <div className="flex items-center gap-5">
                     <a href="#about" className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} transition-colors`}>Sobre mim</a>
                     <a href="#projects" className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} transition-colors`}>Projetos</a>

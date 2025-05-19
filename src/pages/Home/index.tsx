@@ -1,12 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { db } from '../../services/firebaseConnection';
 import { collection, onSnapshot } from 'firebase/firestore';
+
+import { UserContext } from '../../contexts/userContext';
 
 import { ReposProps } from "../../interfaces/IReposProps"
 
 import { Container } from "../../components/container"
 
 export function Home() {
+    const user = useContext(UserContext);
     const [repos, setRepos] = useState<ReposProps[]>([])
 
     useEffect(() => {
@@ -36,6 +39,9 @@ export function Home() {
     return(
         <Container>
             <h1>Home page</h1>
+            <h2 id="about">Sobre mim</h2>
+            <p>{user?.profileDescription}</p>
+            <h2 id="projects">Projetos:</h2>
             {repos.map((repo, i) => (
                 <h2 key={i}>{repo.name}</h2>
             ))}
