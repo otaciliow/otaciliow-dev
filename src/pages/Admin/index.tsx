@@ -11,13 +11,7 @@ import { Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/themeContext';
 
 import { ReposProps } from '../../interfaces/IReposProps';
-
-interface UserDataProps {
-    login: string;
-    name: string | null;
-    avatar: string;
-    profileUrl: string;
-}
+import { UserDataProps } from '../../interfaces/IUserDataProps';
 
 const itens_per_page = 9;
 
@@ -67,7 +61,7 @@ export function Admin() {
                     login: user.login,
                     name: user.name,
                     avatar: user.avatar_url,
-                    profileUrl: user.html_url
+                    profileUrl: user.html_url,
                 }
 
                 setProfile(userInfos)
