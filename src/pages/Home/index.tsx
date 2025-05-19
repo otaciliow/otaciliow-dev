@@ -121,7 +121,7 @@ export function Home() {
                 )}
             </section>
             <footer className="text-center text-sm text-shadow-md py-10">
-                {`© ${new Date().getFullYear()} - ${user?.name}. Todos os direitos reservados.`}
+                {`${user?.name} © ${new Date().getFullYear()} - Todos os direitos reservados.`}
             </footer>
         </Container>
     )
