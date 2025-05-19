@@ -15,10 +15,17 @@ import { UserDataProps } from '../../interfaces/IUserDataProps';
 
 const itens_per_page = 9;
 
+interface octoReposProps {
+    name: string | null;
+    description: string | null;
+    url: string;
+    topics: string[];
+}
+
 export function Admin() {
     const [profile, setProfile] = useState<UserDataProps | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const [repos, setRepos] = useState<ReposProps[]>([]);
+    const [repos, setRepos] = useState<octoReposProps[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [activeRepos, setActiveRepos] = useState<ReposProps[]>([])
     const { theme } = useTheme();
@@ -75,7 +82,7 @@ export function Admin() {
                     per_page: 100,
                 });
 
-                const fetchedRepos: ReposProps[] = data.map((repo) => ({
+                const fetchedRepos: octoReposProps[] = data.map((repo) => ({
                     name: repo.name,
                     description: repo.description,
                     url: repo.svn_url,
@@ -99,6 +106,7 @@ export function Admin() {
 
             snapshot.forEach((doc) => {
                 lista.push({
+                    id: doc.id,
                     name: doc.data().name,
                     description: doc.data().description,
                     url: doc.data().url,
