@@ -10,6 +10,7 @@ interface UserContentProviderProps {
 
 interface UserContentProps extends UserDataProps {
     profileDescription: string | null;
+    profileLinkedin: string;
 }
 
 export const UserContext = createContext<UserContentProps | null>(null);
@@ -29,6 +30,7 @@ function UserContentProvider({children}: UserContentProviderProps) {
                         name: snapshot.data()?.name,
                         avatar: snapshot.data()?.avatar,
                         profileUrl: snapshot.data()?.profileUrl,
+                        profileLinkedin: snapshot.data()?.profileLinkedin,
                         profileDescription: snapshot.data()?.description
                     } as UserContentProps)
                 }
