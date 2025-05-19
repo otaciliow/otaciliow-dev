@@ -13,7 +13,7 @@ export function Header() {
     }
 
     return (
-        <header className="mx-auto p-5 flex justify-center shadow-2xl">
+        <header className="mx-auto p-5 flex justify-center shadow-xl">
             <div className="w-7xl flex items-center justify-between">
                 { user ? (
                     <h2 className="gradient-text text-2xl font-bold md:w-32 hover:animate-pulse cursor-pointer transition-all">{`<${user?.name?.split(' ')[0]}/>`}</h2>
