@@ -81,7 +81,7 @@ export function Home() {
                     mousewheel={true}
                     pagination={{clickable: true}}
                     autoplay={{delay: 6000, pauseOnMouseEnter: true}}
-                    className="w-full"
+                    className={`w-full rounded-md ${theme === 'light' ? 'bg-primary-100/40' : 'bg-primary-100/10'}`}
                 >
                     {repos.map((repo) => (
                         <SwiperSlide className="py-5">
