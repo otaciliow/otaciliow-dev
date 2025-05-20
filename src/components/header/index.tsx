@@ -16,7 +16,7 @@ export function Header() {
         <header className="mx-auto p-5 flex justify-center shadow-xl">
             <div className="w-7xl flex items-center justify-between">
                 { user ? (
-                    <h2 className="gradient-text text-2xl font-bold md:w-32 hover:animate-pulse cursor-pointer transition-all">{`<${user?.name?.split(' ')[0]}/>`}</h2>
+                    <h2 className="gradient-text text-2xl font-bold md:w-32 hover:animate-pulse cursor-default transition-all">{`<${user?.name?.split(' ')[0]}/>`}</h2>
                 ) : (
                     <h2 className="blur-sm gradient-text md:w-32 text-2xl font-bold">{`<Name/>`}</h2>
                 )}
