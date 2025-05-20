@@ -15,6 +15,7 @@ import { ThemeContext } from '../../contexts/themeContext';
 import { ReposProps } from "../../interfaces/IReposProps"
 
 import { Container } from "../../components/container"
+import { ScrollToTopButton } from '../../components/scrollButton';
 
 import { Github, Linkedin } from 'lucide-react';
 
@@ -122,6 +123,7 @@ export function Home() {
                     )}
                 </section>
             </Container>
+            <ScrollToTopButton />
             <footer className="text-center text-sm text-shadow-md py-10 inset-shadow-sm/20">
                 {`${user?.name} © ${new Date().getFullYear()} - Todos os direitos reservados.`}
             </footer>
