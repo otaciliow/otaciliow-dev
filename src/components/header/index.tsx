@@ -23,7 +23,7 @@ export function Header() {
                 <div className="flex items-center gap-5">
                     <button onClick={() => smoothScrollToSection('about')} className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} cursor-pointer transition-colors`}>Sobre mim</button>
                     <button onClick={() => smoothScrollToSection('projects')} className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} cursor-pointer transition-colors`}>Projetos</button>
-                    <button onClick={() => smoothScrollToSection('placeholder')} className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} cursor-pointer transition-colors`}>Placeholder</button>
+                    <a href="https://bit.ly/otaciliow" target="_blank" rel="noopener noreferrer" className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} cursor-pointer transition-colors`}>Currículo</a>
                 </div>
                 <div className={`relative flex w-11 h-6 rounded-full cursor-pointer shadow-inner items-center border border-primary-500 justify-around`}>
                     <Sun size={15} className="text-primary-100" onClick={toggleTheme}/>
