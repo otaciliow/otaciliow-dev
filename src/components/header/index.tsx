@@ -13,17 +13,17 @@ export function Header() {
     }
 
     return (
-        <header className="mx-auto p-5 flex justify-center shadow-xl">
-            <div className="w-7xl flex flex-col gap-5 md:flex-row md:gap-0 items-center justify-between">
+        <header className="mx-auto p-5 flex items-center justify-center shadow-xl">
+            <div className="w-7xl md:px-5 flex flex-col gap-5 md:flex-row md:gap-0 items-center">
                 { user ? (
                     <h2 className="gradient-text text-2xl font-bold md:w-32 hover:animate-pulse cursor-default transition-all">{`<${user?.name?.split(' ')[0]}/>`}</h2>
                 ) : (
                     <h2 className="blur-sm gradient-text md:w-32 text-2xl font-bold">{`<Name/>`}</h2>
                 )}
-                <div className="flex items-center gap-5">
-                    <button onClick={() => smoothScrollToSection('about')} className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} cursor-pointer transition-colors`}>Sobre mim</button>
-                    <button onClick={() => smoothScrollToSection('projects')} className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} cursor-pointer transition-colors`}>Projetos</button>
-                    <a href="https://bit.ly/otaciliow" target="_blank" rel="noopener noreferrer" className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} cursor-pointer transition-colors`}>Currículo</a>
+                <div className="flex items-center gap-5 mx-auto">
+                    <button onClick={() => smoothScrollToSection('about')} className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} cursor-pointer transition-colors font-bold`}>Sobre mim</button>
+                    <button onClick={() => smoothScrollToSection('projects')} className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} cursor-pointer transition-colors font-bold`}>Projetos</button>
+                    <a href="https://bit.ly/otaciliow" target="_blank" rel="noopener noreferrer" className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} cursor-pointer transition-colors font-bold`}>Currículo</a>
                 </div>
                 <div className={`absolute right-5 top-6 md:relative md:top-0 md:right-0 flex w-11 h-6 rounded-full cursor-pointer shadow-inner items-center border border-primary-500 justify-around`}>
                     <Sun size={15} className="text-primary-100" onClick={toggleTheme}/>
