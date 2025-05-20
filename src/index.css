@@ -5,6 +5,10 @@
     --color-primary-400:    #00b4d8;
     --color-primary-500:    #0096c7;
     --color-primary-600:    #0077b6;
+
+    --color-light-primary: #dad7cd;
+    /* --color-dark-primary:  #1b263b; */
+    --color-dark-primary:  #3e5c76;
 }
 
 body.dark {

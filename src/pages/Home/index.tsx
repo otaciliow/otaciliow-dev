@@ -73,7 +73,7 @@ export function Home() {
                         </div>
                     </div>
                 </section>
-                <section id="projects" className="py-5 my-5 flex flex-col gap-10">
+                <section id="projects" className={`py-5 my-5 flex flex-col gap-10 ${theme === 'light' ? 'bg-primary-100/50' : 'bg-primary-100/10'}`}>
                     <h2 id="projects" className={`font-bold text-center text-3xl ${theme === 'light' ? 'text-primary-600' : 'text-primary-400'}`}>Projetos</h2>
                     <p className="text-center">Aqui estão alguns dos meus projetos. Clique nos cards para exibir mais informações e seus respectivos links</p>
                     <Swiper
@@ -84,7 +84,7 @@ export function Home() {
                         mousewheel={true}
                         pagination={{clickable: true}}
                         autoplay={{delay: 6000, pauseOnMouseEnter: true}}
-                        className={`w-full rounded-md ${theme === 'light' ? 'bg-primary-100/40' : 'bg-primary-100/10'} items-stretch`}
+                        className={`w-full rounded-md items-stretch`}
                         breakpoints={
                             {768: {
                                 slidesPerView: 2,
@@ -124,14 +124,14 @@ export function Home() {
                                         <span key={i} className="bg-primary-600 rounded-full py-1 px-3 hover:animate-bounce">{topic}</span>
                                     ))}
                                 </div>
-                                <a href={selectedRepo.url} target="_blank" rel="noopener noreferrer" className="p-2 drop-shadow-2xl rounded-md transition-all text-black bg-primary-100 hover:scale-110">Visitar repositório</a>
+                                <a href={selectedRepo.url} target="_blank" rel="noopener noreferrer" className="p-2 drop-shadow-2xl rounded-md transition-all text-primary-600 font-bold bg-white hover:scale-110">Visitar repositório</a>
                             </div>
                         </div>
                     )}
                 </section>
             </Container>
             <ScrollToTopButton />
-            <footer className="text-center text-sm text-shadow-md py-10 inset-shadow-sm/20">
+            <footer className={`text-center text-sm text-shadow-md py-10 inset-shadow-sm/20 ${theme === 'light' ? 'bg-primary-100/50' : 'bg-primary-100/10'}`}>
                 {`${user?.name} © ${new Date().getFullYear()} - Todos os direitos reservados.`}
             </footer>
         </>

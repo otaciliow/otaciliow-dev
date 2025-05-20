@@ -181,14 +181,14 @@ export function Admin() {
             <div className="flex flex-col gap-5 items-center">
                 <h1 className="text-center font-bold text-2xl">Opa {profile.name?.split(' ')[0]}, bão?</h1>
                 <Link to='/'>
-                    <img src={profile.avatar} alt={`Imagem de perfil de ${profile.name}`} className="max-w-50 rounded-full border-purple-600 border-2" />
+                    <img src={profile.avatar} alt={`Imagem de perfil de ${profile.name}`} className="max-w-50 rounded-full border-primary-500 border-2" />
                 </Link>
             </div>
             <p className="text-center my-5">Selecione os repositórios que serão exibidos na LP ({activeRepos.length}):</p>
             <ul className={`flex items-center justify-center mt-5${isLoading ? ' blur-sm' : ''}`}>
                 <div className="flex flex-wrap gap-4 justify-center md:max-w-4xl">
                     {paginatedRepos?.map((repo, index) => (
-                        <li key={index} className={`border-2 rounded p-2 text-center min-w-3xs list-none cursor-pointer hover:scale-105 transition-all${activeRepos.find(item => item.name === repo.name) ? ' border-purple-600' : ''}`} data-name={repo.name} onClick={() => handleRepoClick(repo.name)}>
+                        <li key={index} className={`border-2 rounded p-2 text-center min-w-3xs list-none cursor-pointer hover:scale-105 transition-all${activeRepos.find(item => item.name === repo.name) ? ' border-primary-500' : ''}`} data-name={repo.name} onClick={() => handleRepoClick(repo.name)}>
                             <span>
                                 {repo.name}
                             </span>
