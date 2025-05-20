@@ -10,26 +10,22 @@ import { Container } from '../../components/container'
 import { Link } from 'react-router-dom';
 import { useTheme } from '../../contexts/themeContext';
 
-interface UserDataProps {
-    login: string;
-    name: string | null;
-    avatar: string;
-    profileUrl: string;
-}
+import { ReposProps } from '../../interfaces/IReposProps';
+import { UserDataProps } from '../../interfaces/IUserDataProps';
 
-interface ReposProps {
+const itens_per_page = 9;
+
+interface octoReposProps {
     name: string | null;
     description: string | null;
     url: string;
     topics: string[];
 }
 
-const itens_per_page = 9;
-
 export function Admin() {
     const [profile, setProfile] = useState<UserDataProps | null>(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const [repos, setRepos] = useState<ReposProps[]>([]);
+    const [repos, setRepos] = useState<octoReposProps[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [activeRepos, setActiveRepos] = useState<ReposProps[]>([])
     const { theme } = useTheme();
@@ -72,7 +68,7 @@ export function Admin() {
                     login: user.login,
                     name: user.name,
                     avatar: user.avatar_url,
-                    profileUrl: user.html_url
+                    profileUrl: user.html_url,
                 }
 
                 setProfile(userInfos)
@@ -86,7 +82,7 @@ export function Admin() {
                     per_page: 100,
                 });
 
-                const fetchedRepos: ReposProps[] = data.map((repo) => ({
+                const fetchedRepos: octoReposProps[] = data.map((repo) => ({
                     name: repo.name,
                     description: repo.description,
                     url: repo.svn_url,
@@ -110,6 +106,7 @@ export function Admin() {
 
             snapshot.forEach((doc) => {
                 lista.push({
+                    id: doc.id,
                     name: doc.data().name,
                     description: doc.data().description,
                     url: doc.data().url,
@@ -184,14 +181,14 @@ export function Admin() {
             <div className="flex flex-col gap-5 items-center">
                 <h1 className="text-center font-bold text-2xl">Opa {profile.name?.split(' ')[0]}, bão?</h1>
                 <Link to='/'>
-                    <img src={profile.avatar} alt={`Imagem de perfil de ${profile.name}`} className="max-w-50 rounded-full border-purple-600 border-2" />
+                    <img src={profile.avatar} alt={`Imagem de perfil de ${profile.name}`} className="max-w-50 rounded-full border-primary-500 border-2" />
                 </Link>
             </div>
             <p className="text-center my-5">Selecione os repositórios que serão exibidos na LP ({activeRepos.length}):</p>
             <ul className={`flex items-center justify-center mt-5${isLoading ? ' blur-sm' : ''}`}>
                 <div className="flex flex-wrap gap-4 justify-center md:max-w-4xl">
                     {paginatedRepos?.map((repo, index) => (
-                        <li key={index} className={`border-2 rounded p-2 text-center min-w-3xs list-none cursor-pointer hover:scale-105 transition-all${activeRepos.find(item => item.name === repo.name) ? ' border-purple-600' : ''}`} data-name={repo.name} onClick={() => handleRepoClick(repo.name)}>
+                        <li key={index} className={`border-2 rounded p-2 text-center min-w-3xs list-none cursor-pointer hover:scale-105 transition-all${activeRepos.find(item => item.name === repo.name) ? ' border-primary-500' : ''}`} data-name={repo.name} onClick={() => handleRepoClick(repo.name)}>
                             <span>
                                 {repo.name}
                             </span>
