@@ -59,7 +59,7 @@ export function Home() {
                 <h1 className="hidden">{`Portfólio de ${user?.name}`}</h1>
                 <section className="py-5 my-5 flex flex-col gap-10" id="about">
                     <h2 className={`font-bold text-center text-3xl ${theme === 'light' ? 'text-primary-600' : 'text-primary-400'}`}>Sobre mim</h2>
-                    <div className="flex items-center justify-evenly">
+                    <div className="flex flex-col gap-5 md:flex-row items-center justify-evenly">
                         <div className="flex flex-col justify-center gap-5">
                             <img src={user?.avatar} alt={`foto de perfil de ${user?.name}`} className="border-2 border-primary-500 rounded-full w-3xs" />
                             <div className="flex items-center justify-center gap-16">
@@ -67,7 +67,7 @@ export function Home() {
                                 <a href={user?.profileLinkedin} target="_blank" rel="noopener noreferrer" className="bg-primary-500 text-white hover:scale-110 hover:animate-pulse transition-all p-1 rounded-md"><Linkedin size={30} /></a>
                             </div>
                         </div>
-                        <div className="flex flex-col">
+                        <div className="flex flex-col px-2 md:px-0">
                             <p className="max-w-xl mb-5">{`Olá! me chamo ${user?.name}!`}</p>
                             <p className="max-w-xl">{user?.profileDescription}</p>
                         </div>
@@ -79,12 +79,18 @@ export function Home() {
                     <Swiper
                         modules={[Mousewheel, Pagination, Autoplay]}
                         spaceBetween={30}
-                        slidesPerView={2}
-                        slidesPerGroup={2}
+                        slidesPerView={1}
+                        slidesPerGroup={1}
                         mousewheel={true}
                         pagination={{clickable: true}}
                         autoplay={{delay: 6000, pauseOnMouseEnter: true}}
                         className={`w-full rounded-md ${theme === 'light' ? 'bg-primary-100/40' : 'bg-primary-100/10'} items-stretch`}
+                        breakpoints={
+                            {768: {
+                                slidesPerView: 2,
+                                slidesPerGroup: 2,
+                            },}
+                        }
                     >
                         {repos.map((repo, i) => (
                             <SwiperSlide key={i} className="py-5">

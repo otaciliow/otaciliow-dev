@@ -14,7 +14,7 @@ export function Header() {
 
     return (
         <header className="mx-auto p-5 flex justify-center shadow-xl">
-            <div className="w-7xl flex items-center justify-between">
+            <div className="w-7xl flex flex-col gap-5 md:flex-row md:gap-0 items-center justify-between">
                 { user ? (
                     <h2 className="gradient-text text-2xl font-bold md:w-32 hover:animate-pulse cursor-default transition-all">{`<${user?.name?.split(' ')[0]}/>`}</h2>
                 ) : (
@@ -25,7 +25,7 @@ export function Header() {
                     <button onClick={() => smoothScrollToSection('projects')} className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} cursor-pointer transition-colors`}>Projetos</button>
                     <a href="https://bit.ly/otaciliow" target="_blank" rel="noopener noreferrer" className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-500 hover:text-primary-100'} cursor-pointer transition-colors`}>Currículo</a>
                 </div>
-                <div className={`relative flex w-11 h-6 rounded-full cursor-pointer shadow-inner items-center border border-primary-500 justify-around`}>
+                <div className={`absolute right-5 top-6 md:relative md:top-0 md:right-0 flex w-11 h-6 rounded-full cursor-pointer shadow-inner items-center border border-primary-500 justify-around`}>
                     <Sun size={15} className="text-primary-100" onClick={toggleTheme}/>
                     <Moon size={15} className='text-primary-600' onClick={toggleTheme}/>
                     <button aria-label="theme switcher" className={`absolute cursor-pointer shadow-md h-4 w-4 left-0.5 bg-primary-500 transition-transform duration-300 rounded-full ${theme === 'light' ? 'translate-x-0' : 'translate-x-5'}`} onClick={toggleTheme}></button>
