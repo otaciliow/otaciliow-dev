@@ -75,6 +75,7 @@ export function Home() {
                 </section>
                 <section id="projects" className="py-5 my-5 flex flex-col gap-10">
                     <h2 id="projects" className={`font-bold text-center text-3xl ${theme === 'light' ? 'text-primary-600' : 'text-primary-400'}`}>Projetos</h2>
+                    <p className="text-center">Aqui estão alguns dos meus projetos. Clique nos cards para exibir mais informações e seus respectivos links</p>
                     <Swiper
                         modules={[Mousewheel, Pagination, Autoplay]}
                         spaceBetween={30}
@@ -83,17 +84,17 @@ export function Home() {
                         mousewheel={true}
                         pagination={{clickable: true}}
                         autoplay={{delay: 6000, pauseOnMouseEnter: true}}
-                        className={`w-full rounded-md ${theme === 'light' ? 'bg-primary-100/40' : 'bg-primary-100/10'}`}
+                        className={`w-full rounded-md ${theme === 'light' ? 'bg-primary-100/40' : 'bg-primary-100/10'} items-stretch`}
                     >
-                        {repos.map((repo) => (
-                            <SwiperSlide className="py-5">
-                                <button onClick={() => openModal(repo)} className="w-full flex items-center justify-center text-white hover:scale-105 transition-all cursor-pointer">
-                                    <div key={repo.id} className="flex gap-4 flex-col items-center justify-center p-5 bg-primary-400 w-md rounded-md">
+                        {repos.map((repo, i) => (
+                            <SwiperSlide key={i} className="py-5">
+                                <button onClick={() => openModal(repo)} className="w-full h-full flex items-center px-14 justify-center text-white hover:scale-105 transition-all cursor-pointer">
+                                    <div className="flex gap-4 w-full h-full flex-col items-center justify-center p-5 bg-primary-400 rounded-md">
                                         <p className={`font-bold text-xl text-shadow-md`}>
                                             {(repo.name)?.replace('-', ' ')}
                                         </p>
-                                        <p className="text-shadow-md">{repo.description}</p>
-                                        <div className="flex flex-wrap justify-evenly gap-2">
+                                        <p className="text-shadow-md text-center flex-grow">{repo.description}</p>
+                                        <div className="flex flex-wrap justify-evenly gap-2 flex-grow">
                                             {repo.topics.map((topic, i) => (
                                                 <span key={i} className="bg-primary-600 rounded-full py-1 px-3">{topic}</span>
                                             ))}
