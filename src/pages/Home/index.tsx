@@ -17,7 +17,7 @@ import { ReposProps } from "../../interfaces/IReposProps"
 import { Container } from "../../components/container"
 import { ScrollToTopButton } from '../../components/scrollButton';
 
-import { Github, Linkedin } from 'lucide-react';
+import { Github, Linkedin, LoaderCircle } from 'lucide-react';
 
 export function Home() {
     const user = useContext(UserContext);
@@ -51,7 +51,18 @@ export function Home() {
         return () => {
             unsub();
         }
-    }, [])
+    }, []);
+
+    if (!user) {
+        return (
+            <Container>
+                <div className="flex flex-col items-center justify-center mt-10">
+                    <h2>Carregando informações</h2>
+                    <LoaderCircle size={40} className="animate-spin" />
+                </div>
+            </Container>
+        ) 
+    };
 
     return(
         <>
