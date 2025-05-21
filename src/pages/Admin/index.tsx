@@ -181,7 +181,7 @@ export function Admin() {
             <div className="flex flex-col gap-5 items-center">
                 <h1 className="text-center font-bold text-2xl">Opa {profile.name?.split(' ')[0]}, bão?</h1>
                 <Link to='/'>
-                    <img src={profile.avatar} alt={`Imagem de perfil de ${profile.name}`} className="max-w-50 rounded-full border-primary-500 border-2" />
+                    <img src={profile.avatar} alt={`Imagem de perfil de ${profile.name}`} className="max-w-50 rounded-full border-primary-500 border-2" loading="lazy" />
                 </Link>
             </div>
             <p className="text-center my-5">Selecione os repositórios que serão exibidos na LP ({activeRepos.length}):</p>
@@ -198,9 +198,9 @@ export function Admin() {
             </ul>
 
             <div className="flex justify-center gap-10 w-full my-5">
-                <button className="cursor-pointer rounded-full hover:not-disabled:bg-purple-600 transition-all disabled:opacity-9 " onClick={handlePrevious} disabled={currentPage === 1}><ChevronLeft size={20} color="#ffffff" /></button>
+                <button className="cursor-pointer rounded-full hover:not-disabled:bg-purple-600 transition-all disabled:opacity-9 " onClick={handlePrevious} disabled={currentPage === 1}><ChevronLeft size={20} color="#ffffff" aria-label="botão para voltar uma página" /></button>
                 <span>{currentPage} de {totalPages}</span>
-                <button className="cursor-pointer rounded-full hover:not-disabled:bg-purple-600 transition-all disabled:opacity-9" onClick={handleNext} disabled={currentPage === totalPages}><ChevronRight size={20} color="#ffffff" /></button>
+                <button className="cursor-pointer rounded-full hover:not-disabled:bg-purple-600 transition-all disabled:opacity-9" onClick={handleNext} disabled={currentPage === totalPages}><ChevronRight size={20} color="#ffffff" aria-label="botão para voltar uma página" /></button>
             </div>
             { theme === 'light' ? (
                 <Toaster toastOptions={{style: {background: '#ffffff', color: '#333333'}}}/>
