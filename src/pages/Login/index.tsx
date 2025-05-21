@@ -58,7 +58,7 @@ export function Login() {
                     </div>
 
                     <div className="w-full flex justify-center">
-                        <button className={`bg-primary-600 text-white w-50 rounded-md h-10 font-medium cursor-pointer hover:bg-primary-500 transition-all`}>Acessar</button>
+                        <button className={`bg-primary-600 text-white w-50 rounded-md h-10 font-medium cursor-pointer hover:bg-primary-500 transition-all`} aria-label="enviar formulário">Acessar</button>
                     </div>
                 </form>
             </div>

@@ -72,7 +72,7 @@ export function Home() {
                     <h2 className={`font-bold text-center text-3xl ${theme === 'light' ? 'text-primary-600' : 'text-primary-400'}`}>Sobre mim</h2>
                     <div className="flex flex-col gap-5 md:flex-row items-center justify-evenly">
                         <div className="flex flex-col justify-center gap-5">
-                            <img src={user?.avatar} alt={`foto de perfil de ${user?.name}`} className="border-2 border-primary-500 rounded-full w-3xs" />
+                            <img src={user?.avatar} alt={`foto de perfil de ${user?.name}`} className="border-2 border-primary-500 rounded-full w-3xs" loading="lazy" />
                             <div className="flex items-center justify-center gap-16">
                                 <a href={user?.profileUrl} target="_blank" rel="noopener noreferrer" className="bg-primary-500 text-white hover:scale-110 hover:animate-pulse transition-all p-1 rounded-md"><Github size={30} /></a>
                                 <a href={user?.profileLinkedin} target="_blank" rel="noopener noreferrer" className="bg-primary-500 text-white hover:scale-110 hover:animate-pulse transition-all p-1 rounded-md"><Linkedin size={30} /></a>
