@@ -17,7 +17,7 @@ import { ReposProps } from "../../interfaces/IReposProps"
 import { Container } from "../../components/container"
 import { ScrollToTopButton } from '../../components/scrollButton';
 
-import { Github, Linkedin, LoaderCircle } from 'lucide-react';
+import { Github, Linkedin, LoaderCircle, ExternalLink } from 'lucide-react';
 
 export function Home() {
     const user = useContext(UserContext);
@@ -42,6 +42,7 @@ export function Home() {
                     url: doc.data().url,
                     topics: doc.data().topics,
                     previewImage: doc.data().previewImage,
+                    publishedUrl: doc.data().publishedUrl,
                 })
 
             })
@@ -105,7 +106,7 @@ export function Home() {
                         }
                     >
                         {repos.map((repo, i) => (
-                            <SwiperSlide key={i} className="py-5">
+                            <SwiperSlide key={i} className="pb-5">
                                 <button onClick={() => openModal(repo)} className="w-full h-full flex items-center px-14 justify-center text-white hover:scale-105 transition-all cursor-pointer">
                                     <div className="flex gap-4 w-full h-full flex-col items-center justify-center p-5 bg-primary-400 rounded-md">
                                         <p className={`font-bold text-xl text-shadow-md`}>
@@ -123,15 +124,15 @@ export function Home() {
                         ))}
                     </Swiper>
                     {selectedRepo && (
-                        <div onClick={(e) => {if (e.target === e.currentTarget) {closeModal()}}} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                            <div role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()} className="bg-dark-primary text-white drop-shadow-2xl flex flex-col items-center justify-center gap-5 rounded-lg p-6 max-w-xl w-full shadow-lg relative">
+                        <div onClick={(e) => {if (e.target === e.currentTarget) {closeModal()}}} className="fixed inset-0 px-4 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                            <div role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()} className="bg-primary-500 text-white drop-shadow-2xl flex flex-col items-center justify-center gap-5 rounded-lg p-6 max-w-xl w-full shadow-lg relative">
                                 <button aria-label="fechar modal" onClick={() => closeModal()} className="cursor-pointer absolute top-2 right-4 text-white hover:text-gray-400 transition-colors text-2xl">
                                     &times;
                                 </button>
                                 <h3 className="text-xl font-bold text-shadow-md text-center">{selectedRepo.name}</h3>
                                 <input type="hidden" name={selectedRepo.previewImage} />
                                 {selectedRepo.previewImage && (
-                                    <img src={`/projects/${selectedRepo.previewImage}.png`} alt={`preview da tela inicial do projeto ${selectedRepo.name}`} />
+                                    <img src={`/projects/${selectedRepo.previewImage}.png`} alt={`preview da tela inicial do projeto ${selectedRepo.name}`} className="rounded-md" />
                                 )}
                                 <p className="text-shadow-md text-center">{selectedRepo.description || 'Sem descrição disponível.'}</p>
                                 <p className="text-shadow-md ">Principais tecnologias utilizadas:</p>
@@ -140,7 +141,13 @@ export function Home() {
                                         <span key={i} className="bg-primary-600 rounded-full py-1 px-3 hover:animate-bounce cursor-default">{topic}</span>
                                     ))}
                                 </div>
-                                <a href={selectedRepo.url} target="_blank" rel="noopener noreferrer" className="p-2 drop-shadow-2xl rounded-md transition-all text-primary-600 font-bold bg-white hover:scale-110">Visitar repositório</a>
+                                <span className="h-0.5 w-full bg-primary-100 rounded-md" />
+                                <div className="flex items-center justify-center gap-5">
+                                    <a href={selectedRepo.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 p-2 drop-shadow-2xl rounded-md transition-all text-primary-600 font-bold bg-white hover:scale-110">Repositório <ExternalLink size={14}/></a>
+                                    {selectedRepo.publishedUrl && (
+                                        <a href={selectedRepo.publishedUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 p-2 drop-shadow-2xl rounded-md transition-all text-primary-600 font-bold bg-white hover:scale-110">Visitar site<ExternalLink size={14}/></a>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     )}
