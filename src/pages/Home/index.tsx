@@ -143,7 +143,9 @@ export function Home() {
                                 </div>
                                 <span className="h-0.5 w-full bg-primary-100 rounded-md" />
                                 <div className="flex items-center justify-center gap-5">
-                                    <a href={selectedRepo.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 p-2 drop-shadow-2xl rounded-md transition-all text-primary-600 font-bold bg-white hover:scale-110">Repositório <ExternalLink size={14}/></a>
+                                    {selectedRepo.url && (
+                                        <a href={selectedRepo.url} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 p-2 drop-shadow-2xl rounded-md transition-all text-primary-600 font-bold bg-white hover:scale-110">Repositório <ExternalLink size={14}/></a>
+                                    )}
                                     {selectedRepo.publishedUrl && (
                                         <a href={selectedRepo.publishedUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 p-2 drop-shadow-2xl rounded-md transition-all text-primary-600 font-bold bg-white hover:scale-110">Visitar site<ExternalLink size={14}/></a>
                                     )}
