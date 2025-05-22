@@ -1,54 +1,50 @@
-# React + TypeScript + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é um portfólio pessoal desenvolvido para apresentar habilidades, experiências e projetos.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Página inicial**: Apresentação pessoal e resumo profissional.
+- **Seção de projetos**: Listagem detalhada dos principais projetos, com descrições, tecnologias utilizadas e links.
+- **Gerenciamento dos itens exibidos**: Página admin para gerenciar projetos que serão exibidos na página inicial.
+- **Banco de dados em nuvem**: Banco de dados NoSQL do Firebase para armazenar informações de usuário e de projetos.
+- **Responsividade**: Layout adaptável para dispositivos móveis e desktops.
+- **Acessibilidade**: Elementos otimizados para navegação acessível.
 
-## Expanding the ESLint configuration
+## Tecnologias Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend**: [React.js](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vite.dev/)
+- **Formulários**: [Zod](https://zod.dev/)
+- **Estilização**: [Tailwindcss](https://tailwindcss.com/), [Swiper](https://swiperjs.com/)
+- **Backend e autenticação de usuário**: [Firebase](https://firebase.google.com/)
+- **Hospedagem**: [Vercel](https://vercel.com/)
+- **Gerenciamento de dependências**: [npm](https://www.npmjs.com/)
+- **Variáveis de ambiente**: [dotenv](https://www.npmjs.com/package/dotenv)
+- **Outras ferramentas(ícones, toasts, etc)**: [Lucide-react](https://lucide.dev/), [React Hot Toast](https://react-hot-toast.com/), [Octokit](https://octokit.github.io/rest.js/v21/)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Ferramentas de Desenvolvimento
+
+- **Controle de versão**: [Git](https://git-scm.com/) e [GitHub](https://github.com/)
+- **Linting e formatação**: [ESLint](https://eslint.org/)
+
+## Como executar o projeto
+
+```bash
+# Instale as dependências
+npm install
+
+# Crie um arquivo .env e adicione suas variáveis de ambiente (Firebase e GitHub Token)
+
+# Inicie o servidor de desenvolvimento
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Contribuição
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Contribuições são bem-vindas! Siga as melhores práticas de Git e envie um pull request.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
+
+---
