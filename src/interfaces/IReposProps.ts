@@ -5,4 +5,5 @@ export interface ReposProps {
     url: string;
     topics: string[];
     previewImage?: string;
+    publishedUrl?: string;
 }
