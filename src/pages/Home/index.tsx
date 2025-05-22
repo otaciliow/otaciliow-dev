@@ -25,8 +25,8 @@ export function Home() {
     const [repos, setRepos] = useState<ReposProps[]>([])
     const [selectedRepo, setSelectedRepo] = useState<ReposProps | null>(null)
 
-    const openModal = (repo: ReposProps) => setSelectedRepo(repo);
-    const closeModal = () => setSelectedRepo(null);
+    const openModal = (repo: ReposProps) => {setSelectedRepo(repo), document.body.classList.add('no-scroll')};
+    const closeModal = () => {setSelectedRepo(null), document.body.classList.remove('no-scroll')};
 
     useEffect(() => {
         const linksRef = collection(db, 'active-display')
@@ -40,7 +40,8 @@ export function Home() {
                     name: doc.data().name,
                     description: doc.data().description,
                     url: doc.data().url,
-                    topics: doc.data().topics
+                    topics: doc.data().topics,
+                    previewImage: doc.data().previewImage,
                 })
 
             })
@@ -108,7 +109,7 @@ export function Home() {
                                 <button onClick={() => openModal(repo)} className="w-full h-full flex items-center px-14 justify-center text-white hover:scale-105 transition-all cursor-pointer">
                                     <div className="flex gap-4 w-full h-full flex-col items-center justify-center p-5 bg-primary-400 rounded-md">
                                         <p className={`font-bold text-xl text-shadow-md`}>
-                                            {(repo.name)?.replace('-', ' ')}
+                                            {repo.name}
                                         </p>
                                         <p className="text-shadow-md text-center flex-grow">{repo.description}</p>
                                         <div className="flex flex-wrap justify-evenly gap-2 flex-grow">
@@ -123,16 +124,20 @@ export function Home() {
                     </Swiper>
                     {selectedRepo && (
                         <div onClick={(e) => {if (e.target === e.currentTarget) {closeModal()}}} className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                            <div role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()} className="bg-primary-400 text-white drop-shadow-2xl flex flex-col items-center justify-center gap-5 rounded-lg p-6 max-w-md w-full shadow-lg relative">
-                                <button aria-label="fechar modal" onClick={() => closeModal()} className="cursor-pointer absolute top-2 right-4 text-gray-600 hover:text-black text-2xl">
+                            <div role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()} className="bg-dark-primary text-white drop-shadow-2xl flex flex-col items-center justify-center gap-5 rounded-lg p-6 max-w-xl w-full shadow-lg relative">
+                                <button aria-label="fechar modal" onClick={() => closeModal()} className="cursor-pointer absolute top-2 right-4 text-white hover:text-gray-400 transition-colors text-2xl">
                                     &times;
                                 </button>
-                                <h3 className="text-xl font-bold text-shadow-md text-center">{selectedRepo.name?.replace('-', ' ')}</h3>
-                                <p className="text-shadow-md">{selectedRepo.description || 'Sem descrição disponível.'}</p>
+                                <h3 className="text-xl font-bold text-shadow-md text-center">{selectedRepo.name}</h3>
+                                <input type="hidden" name={selectedRepo.previewImage} />
+                                {selectedRepo.previewImage && (
+                                    <img src={`/projects/${selectedRepo.previewImage}.png`} alt={`preview da tela inicial do projeto ${selectedRepo.name}`} />
+                                )}
+                                <p className="text-shadow-md text-center">{selectedRepo.description || 'Sem descrição disponível.'}</p>
                                 <p className="text-shadow-md ">Principais tecnologias utilizadas:</p>
                                 <div className="flex items-center flex-wrap gap-2 justify-evenly">
                                     {selectedRepo.topics.map((topic, i) => (
-                                        <span key={i} className="bg-primary-600 rounded-full py-1 px-3 hover:animate-bounce">{topic}</span>
+                                        <span key={i} className="bg-primary-600 rounded-full py-1 px-3 hover:animate-bounce cursor-default">{topic}</span>
                                     ))}
                                 </div>
                                 <a href={selectedRepo.url} target="_blank" rel="noopener noreferrer" className="p-2 drop-shadow-2xl rounded-md transition-all text-primary-600 font-bold bg-white hover:scale-110">Visitar repositório</a>
@@ -142,8 +147,8 @@ export function Home() {
                 </section>
             </Container>
             <ScrollToTopButton />
-            <footer className={`text-center text-sm text-shadow-md py-10 inset-shadow-sm/20 ${theme === 'light' ? 'bg-primary-100/50' : 'bg-primary-100/10'}`}>
-                {`${user?.name} © ${new Date().getFullYear()} - Todos os direitos reservados.`}
+            <footer className={`text-center text-sm text-shadow-md py-10 ${theme === 'light' ? 'bg-primary-100/50' : 'bg-primary-100/10'}`}>
+                {`Copyright © ${new Date().getFullYear()} - Todos os direitos reservados.`}
             </footer>
         </>
     )

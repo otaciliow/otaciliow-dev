@@ -15,6 +15,10 @@ body.dark {
     color: #ffffff;
 }
 
+body.no-scroll {
+    overflow: hidden;
+}
+
 .gradient-text {
     background-image: linear-gradient(to right, #0077b6, #00b4d8);
     background-clip: text;
