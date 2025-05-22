@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import { Octokit } from '@octokit/rest';
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight, LoaderCircle } from 'lucide-react'
 import toast, { Toaster } from 'react-hot-toast';
 
 import { doc, collection, setDoc, deleteDoc, onSnapshot } from 'firebase/firestore';
@@ -172,6 +172,7 @@ export function Admin() {
         return (
             <Container>
                 <h1 className="text-center my-10">Carregando informações...</h1>
+                <p className="flex justify-center"><LoaderCircle size={30} className="animate-spin"/></p>
             </Container>
         )
     }

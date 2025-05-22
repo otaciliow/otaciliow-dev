@@ -86,7 +86,7 @@ export function Home() {
                         </div>
                     </div>
                 </section>
-                <section id="projects" className={`py-5 my-5 flex flex-col gap-10 ${theme === 'light' ? 'bg-primary-100/50' : 'bg-primary-100/10'}`}>
+                <section id="projects" className={`py-5 my-5 mb-20 flex flex-col gap-10 ${theme === 'light' ? 'bg-primary-100/50' : 'bg-primary-100/10'}`}>
                     <h2 id="projects" className={`font-bold text-center text-3xl ${theme === 'light' ? 'text-primary-600' : 'text-primary-400'}`}>Projetos</h2>
                     <p className="text-center">Aqui estão alguns dos meus projetos. Clique nos cards para exibir mais informações e seus respectivos links</p>
                     <Swiper
