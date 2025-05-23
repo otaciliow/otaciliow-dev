@@ -4,6 +4,7 @@ import { Private } from './routes/private';
 import { Home } from './pages/Home'
 import { Login } from './pages/Login'
 import { Admin } from './pages/Admin'
+import { NotFound } from './pages/NotFound';
 
 import { Layout } from './components/layout'
 
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
     path: '/login',
     element: <Login />
   },
+  {
+    path: '*',
+    element: <NotFound />
+  }
 ])
 
 export { router };
