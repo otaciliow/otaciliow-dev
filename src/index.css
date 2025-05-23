@@ -19,6 +19,10 @@ body.no-scroll {
     overflow: hidden;
 }
 
+.swiper-pagination-bullets {
+    bottom: -5px !important;
+}
+
 .gradient-text {
     background-image: linear-gradient(to right, #0077b6, #00b4d8);
     background-clip: text;
