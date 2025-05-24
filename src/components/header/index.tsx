@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { UserContext } from '../../contexts/userContext';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, FileDown } from 'lucide-react';
 import { useTheme } from '../../contexts/themeContext';
 
 export function Header() {
@@ -23,7 +23,7 @@ export function Header() {
                 <div className="flex items-center gap-5 mx-auto">
                     <button onClick={() => smoothScrollToSection('about')} className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-100 hover:text-white'} cursor-pointer transition-colors font-bold text-shadow-md`} aria-label="link para a seção 'Sobre Mim'">Sobre mim</button>
                     <button onClick={() => smoothScrollToSection('projects')} className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-100 hover:text-white'} cursor-pointer transition-colors font-bold text-shadow-md`} arial-label="link para a seção 'Projetos'">Projetos</button>
-                    <a href="https://bit.ly/otaciliow" target="_blank" rel="noopener noreferrer" className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-100 hover:text-white'} cursor-pointer transition-colors font-bold text-shadow-md`} aria-label="link para download do currículo">Currículo</a>
+                    <a href="https://bit.ly/otaciliow" target="_blank" rel="noopener noreferrer" className={`${theme === 'light' ? 'text-primary-600 hover:text-primary-500' : 'text-primary-100 hover:text-white'} flex items-center gap-1 cursor-pointer transition-colors font-bold text-shadow-md`} aria-label="link para download do currículo">Currículo<FileDown size={16}/></a>
                 </div>
                 <div className={`absolute right-5 top-6 md:relative md:top-0 md:right-0 flex w-11 h-6 rounded-full cursor-pointer shadow-inner items-center border ${theme === 'light' ? 'border-primary-500' : 'border-primary-100'} justify-around`}>
                     <Sun size={15} className="text-primary-100" onClick={toggleTheme}/>
