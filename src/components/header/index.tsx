@@ -13,7 +13,7 @@ export function Header() {
     }
 
     return (
-        <header className={`mx-auto p-5 flex items-center justify-center shadow-xl ${theme === 'light' ? 'bg-primary-100/50' : 'bg-primary-100/10'}`}>
+        <header className={`mx-auto p-5 fixed w-full top-0 flex items-center justify-center shadow-xl ${theme === 'light' ? 'bg-light-primary' : 'bg-dark-primary'}`}>
             <div className="w-7xl md:px-5 flex flex-col gap-5 md:flex-row md:gap-0 items-center">
                 { user ? (
                     <h2 className="gradient-text text-2xl font-bold md:w-32 hover:animate-pulse cursor-default transition-all">{`<${user?.name?.split(' ')[0]}/>`}</h2>
