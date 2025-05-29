@@ -9,7 +9,7 @@ interface UserContentProviderProps {
 }
 
 interface UserContentProps extends UserDataProps {
-    profileDescription: string | null;
+    profileDescription: string[] | null;
     profileLinkedin: string;
 }
 
