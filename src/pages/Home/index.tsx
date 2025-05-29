@@ -156,8 +156,8 @@ export function Home() {
                 </section>
             </Container>
             <ScrollToTopButton />
-            <footer className={`text-center text-sm text-shadow-md py-10 ${theme === 'light' ? 'bg-primary-100/50' : 'bg-primary-100/10'}`}>
-                {`Copyright © ${new Date().getFullYear()} - Todos os direitos reservados.`}
+            <footer className={`text-center text-sm text-shadow-md py-10 ${theme === 'light' ? 'bg-light-primary' : 'bg-dark-primary'}`}>
+                {`© ${new Date().getFullYear()} ${user.name} - Todos os direitos reservados.`}
             </footer>
         </>
     )
