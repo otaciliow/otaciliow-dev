@@ -80,9 +80,11 @@ export function Home() {
                                 <a href={user?.profileLinkedin} target="_blank" rel="noopener noreferrer" className="bg-primary-500 text-white hover:scale-110 hover:animate-pulse transition-all p-1 rounded-md"><Linkedin size={30} /></a>
                             </div>
                         </div>
-                        <div className="flex flex-col px-2 md:px-0">
+                        <div className="flex flex-col gap-3 px-2 md:px-0">
                             <p className="max-w-xl mb-5">{`Olá! me chamo ${user?.name}!`}</p>
-                            <p className="max-w-xl">{user?.profileDescription}</p>
+                            {user?.profileDescription?.map((paragraph) => (
+                                <p className="max-w-xl">{paragraph}</p>
+                            ))}
                         </div>
                     </div>
                 </section>
