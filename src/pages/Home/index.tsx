@@ -58,7 +58,7 @@ export function Home() {
     if (!user) {
         return (
             <Container>
-                <div className="flex flex-col items-center justify-center mt-10">
+                <div className="flex flex-col items-center justify-center mt-20">
                     <h2>Carregando informações</h2>
                     <LoaderCircle size={40} className="animate-spin" />
                 </div>
@@ -81,7 +81,7 @@ export function Home() {
                             </div>
                         </div>
                         <div className="flex flex-col gap-3 px-2 md:px-0">
-                            <p className="max-w-xl mb-5">{`Olá! me chamo ${user?.name}!`}</p>
+                            <p className="max-w-xl">{`Olá! me chamo ${user?.name}!`}</p>
                             {user?.profileDescription?.map((paragraph) => (
                                 <p className="max-w-xl">{paragraph}</p>
                             ))}
